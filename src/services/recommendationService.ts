@@ -108,7 +108,9 @@ export async function analyzeMentalState(params: {
     });
 
     let text = response.text || '{}';
+
     // Remove markdown code blocks if present
+
     if (text.includes('```')) {
       text = text.replace(/```json|```/g, '').trim();
     }
@@ -117,10 +119,12 @@ export async function analyzeMentalState(params: {
     const recommendations: Recommendation[] = [];
 
     // Ensure activities and advice are at least empty arrays
+
     const activities = data.activities || [];
     const advice = data.advice || [];
 
     // Add Activities
+
     activities.forEach((act: any, idx: number) => {
       recommendations.push({
         id: `ai-act-${idx}`,
@@ -132,6 +136,7 @@ export async function analyzeMentalState(params: {
     });
 
     // Add Advice
+
     advice.forEach((adv: any, idx: number) => {
       recommendations.push({
         id: `ai-advice-${idx}`,
@@ -143,6 +148,7 @@ export async function analyzeMentalState(params: {
     });
 
     // Fetch dynamic content (videos/articles) based on primary emotion or text
+
     const primaryEmotion = normalizeEmotion(facialEmotion || voiceEmotion || (data.score < 50 ? 'Stress' : 'Neutral'));
     const dynamicContent = await fetchResources({ emotion: primaryEmotion, maxVideos: 2, maxArticles: 2 });
     
@@ -176,6 +182,7 @@ export async function fetchResources(params: { emotion: string; maxVideos?: numb
   const queryBase = EMOTION_QUERIES[emotion] || 'wellness';
   
   // 1. YouTube Fetching
+
   const youtubeKey = (import.meta as any).env.VITE_YOUTUBE_API_KEY;
   if (youtubeKey) {
     try {
@@ -204,6 +211,7 @@ export async function fetchResources(params: { emotion: string; maxVideos?: numb
   }
 
   // 2. Wikipedia/Article Fetching
+  
   try {
     const wikiQuery = encodeURIComponent(queryBase.split(',')[0]);
     const wikiResponse = await fetch(

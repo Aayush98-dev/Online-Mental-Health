@@ -29,8 +29,7 @@ export default function ActivityModal({ isOpen, onClose, emotion }: ActivityModa
       ]);
       setActivities(detailedActs);
       setRecommendations(recs);
-      
-      // Log to Firebase as requested
+
       if (user) {
         await addDoc(collection(db, 'activityLogs'), {
           userId: user.uid,
@@ -110,7 +109,7 @@ export default function ActivityModal({ isOpen, onClose, emotion }: ActivityModa
                 </div>
               ) : (
                 <>
-                  {/* AI Activities Section */}
+              
                   <section className="space-y-10">
                     <div className="flex items-center justify-between">
                       <h3 className="text-[10px] font-black text-brand-teal uppercase tracking-[0.5em] flex items-center gap-3">
@@ -153,9 +152,9 @@ export default function ActivityModal({ isOpen, onClose, emotion }: ActivityModa
                     </div>
                   </section>
 
-                  {/* Multimedia Section */}
+        
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                    {/* YouTube Videos */}
+           
                     <section className="space-y-10">
                       <h3 className="text-[10px] font-black text-brand-teal uppercase tracking-[0.5em] flex items-center gap-3">
                         <Youtube className="w-4 h-4 text-red-500" /> Neural Visuals
@@ -178,7 +177,7 @@ export default function ActivityModal({ isOpen, onClose, emotion }: ActivityModa
                       </div>
                     </section>
 
-                    {/* Articles */}
+            
                     <section className="space-y-10">
                       <h3 className="text-[10px] font-black text-brand-teal uppercase tracking-[0.5em] flex items-center gap-3">
                         <BookOpen className="w-4 h-4 text-brand-purple" /> Cognitive Intel

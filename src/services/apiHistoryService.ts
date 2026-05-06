@@ -1,7 +1,7 @@
-/**
- * API History Service
- * This service communicates with the custom Express/MongoDB backend.
- */
+
+// ********  API History Service . This service communicates with the custom Express/MongoDB backend.
+
+import { request } from "express";
 
 const API_BASE_URL = '/api';
 
@@ -12,9 +12,9 @@ export interface DetectionResult {
 }
 
 export const apiHistoryService = {
-  /**
-   * Log a login event to the custom backend
-   */
+  
+  // Log a login event to the custom backend
+
   logLogin: async (userId: string, email: string) => {
     try {
       const response = await fetch(`${API_BASE_URL}/auth/login-history`, {
@@ -32,9 +32,9 @@ export const apiHistoryService = {
     }
   },
 
-  /**
-   * Save detection results to MongoDB
-   */
+
+  // Save detection results to MongoDB
+
   saveDetection: async (userId: string, result: DetectionResult) => {
     try {
       const response = await fetch(`${API_BASE_URL}/history/detection`, {
@@ -48,9 +48,9 @@ export const apiHistoryService = {
     }
   },
 
-  /**
-   * Fetch detection history from MongoDB
-   */
+  
+  // Fetch detection history from MongoDB
+
   getDetectionHistory: async (userId: string) => {
     try {
       const response = await fetch(`${API_BASE_URL}/history/detection/${userId}`);
@@ -61,9 +61,9 @@ export const apiHistoryService = {
     }
   },
 
-  /**
-   * Log therapist contact request to MongoDB
-   */
+
+  // Log therapist contact request to MongoDB
+
   logContactRequest: async (userId: string, therapistId: string, therapistName: string, message: string) => {
     try {
       const response = await fetch(`${API_BASE_URL}/contacts/request`, {
